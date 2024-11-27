@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from 'sonner'
+import { Navbar } from "@/components/navbar";
+import { LanguageProvider } from "@/context/language-context";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,15 +27,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isFrench =
+    typeof window !== "undefined" &&
+    window.navigator.language.toLowerCase().startsWith("fr");
+  const lang = isFrench ? "fr" : "en";
+
   return (
-    <html lang="en">
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster />
-        <div className="flex justify-center pt-32 lg:pt-36 min-h-screen sm:px-8 z-10 pointer-events-none container mx-auto">
-          {children}
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider>
+            <Navbar />
+            <Toaster />
+            <div className="flex justify-center pt-32 lg:pt-36 min-h-screen sm:px-8 z-10 pointer-events-none container mx-auto">
+              {children}
+            </div>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
