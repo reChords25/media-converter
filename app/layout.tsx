@@ -45,10 +45,10 @@ export default function RootLayout({
         >
           <LanguageProvider>
             <Navbar />
-            <Toaster />
-            <div className="flex justify-center pt-32 lg:pt-36 min-h-screen sm:px-8 z-10 pointer-events-none container mx-auto">
+            <Toaster expand={true} />
+            <main>
               {children}
-            </div>
+            </main>
           </LanguageProvider>
         </ThemeProvider>
       </body>

@@ -68,9 +68,8 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          {(navItems as { name: string; href: string }[]).map((item) => (
+        {(navItems as { name: string; href: string }[]).map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -84,6 +83,10 @@ export function Navbar() {
               {item.name}
             </Link>
           ))}
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
           <LanguageSwitcher />
           <Button
             variant="ghost"
@@ -93,17 +96,6 @@ export function Navbar() {
             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </Button>
-          <a
-              href="https://github.com/bellandry/flow-format"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:block"
-            >
-              <Button className="bg-neutral-950 dark:bg-white rounded-full" size={"lg"}>
-                <Github className="h-5 w-5" />
-                Github Repo
-              </Button>
-            </a>
         </div>
 
         {/* Mobile Navigation */}
