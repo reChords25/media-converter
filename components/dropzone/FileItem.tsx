@@ -4,13 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { extensions, translations } from "@/constants";
+import { useLanguage } from "@/context/language-context";
 import bytesToSize from "@/utils/bytes-to-size";
 import compressFileName from "@/utils/compress-file-name";
 import fileToIcon from "@/utils/file-to-icon";
 import { CheckIcon, FileWarningIcon, Loader2, X } from "lucide-react";
 import { Button } from "../ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { useLanguage } from "@/context/language-context";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { FileItemProps } from "./types";
 
 export default function FileItem({
@@ -28,15 +34,13 @@ export default function FileItem({
   const t = translations[language].dropzone;
 
   return (
-    <div className="w-full py-4 space-y-2 lg:py-0 relative cursor-pointer rounded-xl border h-fit lg:h-20 px-4 lg:px-10 flex flex-wrap lg:flex-nowrap items-center justify-between">
+    <div className="max-w-screen container mx-auto py-4 space-y-2 lg:py-0 relative cursor-pointer rounded-xl border h-fit lg:h-20 px-4 lg:px-10 flex flex-wrap lg:flex-nowrap items-center justify-between bg-background">
       {!is_loaded && (
         <Skeleton className="h-full w-full -ml-10 cursor-progress absolute rounded-xl" />
       )}
       <div className="flex gap-4 items-center">
-        <span className="text-2xl text-orange-600">
-          {fileToIcon(action.file_type)}
-        </span>
-        <div className="flex items-center gap-1 w-96">
+        <span className="text-orange-600">{fileToIcon(action.file_type)}</span>
+        <div className="flex items-center gap-1 w-fit">
           <span className="text-md font-medium overflow-x-hidden">
             {compressFileName(action.file_name)}
           </span>
@@ -69,11 +73,17 @@ export default function FileItem({
           <Select
             onValueChange={(value) => {
               if (extensions.audio.includes(value)) {
-                setDefaultValues(prev => ({ ...prev, [action.file_name]: "audio" }));
+                setDefaultValues((prev) => ({
+                  ...prev,
+                  [action.file_name]: "audio",
+                }));
               } else if (extensions.video.includes(value)) {
-                setDefaultValues(prev => ({ ...prev, [action.file_name]: "video" }));
+                setDefaultValues((prev) => ({
+                  ...prev,
+                  [action.file_name]: "video",
+                }));
               }
-              setSelected(prev => ({ ...prev, [action.file_name]: value }));
+              setSelected((prev) => ({ ...prev, [action.file_name]: value }));
               onConversionChange(action.file_name, value);
             }}
             value={selected[action.file_name] || "..."}
@@ -94,7 +104,10 @@ export default function FileItem({
                 </div>
               )}
               {action.file_type.includes("video") && (
-                <Tabs defaultValue={defaultValues[action.file_name] || "video"} className="w-full">
+                <Tabs
+                  defaultValue={defaultValues[action.file_name] || "video"}
+                  className="w-full"
+                >
                   <TabsList className="w-full">
                     <TabsTrigger value="video" className="w-full">
                       Video

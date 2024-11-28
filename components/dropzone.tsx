@@ -4,10 +4,10 @@ import convertFile from "@/utils/convert";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { useCallback, useEffect, useRef, useState } from "react";
 import loadFfmpeg from "../utils/load-ffmpeg";
-import { Action } from "./dropzone/types";
 import ConversionActions from "./dropzone/ConversionActions";
 import DropzoneInput from "./dropzone/DropzoneInput";
 import FileItem from "./dropzone/FileItem";
+import { Action } from "./dropzone/types";
 
 export default function Dropzone() {
   const [actions, setActions] = useState<Action[]>([]);
@@ -17,7 +17,9 @@ export default function Dropzone() {
   const [is_converting, setIsConverting] = useState<boolean>(false);
   const [is_done, setIsDone] = useState<boolean>(false);
   const ffmpegRef = useRef<FFmpeg | null>(null);
-  const [defaultValues, setDefaultValues] = useState<{ [key: string]: string }>({});
+  const [defaultValues, setDefaultValues] = useState<{ [key: string]: string }>(
+    {}
+  );
   const [selected, setSelected] = useState<{ [key: string]: string }>({});
 
   const accepted_files = {
@@ -57,25 +59,25 @@ export default function Dropzone() {
 
   const download = (action: Action) => {
     if (!action.url || !action.output) return;
-    
+
     const a = document.createElement("a");
     a.style.display = "none";
     a.href = action.url;
-    
+
     // Use the original output filename if it's a string, or get it from the File object
-    let filename = '';
-    if (typeof action.output === 'string') {
+    let filename = "";
+    if (typeof action.output === "string") {
       filename = action.output;
     } else if (action.output instanceof File) {
-      filename = action.file_name.replace(/\.[^/.]+$/, '') + '.' + action.to;
+      filename = action.file_name.replace(/\.[^/.]+$/, "") + "." + action.to;
     } else {
-      filename = 'converted_file.' + action.to;
+      filename = "converted_file." + action.to;
     }
-    
+
     a.download = filename;
     document.body.appendChild(a);
     a.click();
-    
+
     // Clean up after download
     URL.revokeObjectURL(action.url);
     document.body.removeChild(a);
@@ -170,7 +172,7 @@ export default function Dropzone() {
     });
     setIsReady(tmp_is_ready);
   }, [actions]);
-  
+
   useEffect(() => {
     if (!actions.length) {
       setIsDone(false);
@@ -189,7 +191,6 @@ export default function Dropzone() {
     ffmpegRef.current = ffmpeg_response;
     setIsLoaded(true);
   };
-
 
   if (actions.length) {
     return (
@@ -222,9 +223,6 @@ export default function Dropzone() {
   }
 
   return (
-    <DropzoneInput
-      onUpload={handleUpload}
-      accepted_files={accepted_files}
-    />
+    <DropzoneInput onUpload={handleUpload} accepted_files={accepted_files} />
   );
 }
