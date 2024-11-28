@@ -49,19 +49,19 @@ export default function DropzoneInput({ onUpload, accepted_files }: DropzoneInpu
           <div className="space-y-4 text-foreground">
             {is_hover ? (
               <>
-                <div className="justify-center flex text-6xl">
-                  <FileSymlink />
+                <div className="justify-center flex">
+                  <FileSymlink className="size-10 md:size-14" />
                 </div>
-                <h3 className="text-center font-medium text-2xl">
+                <h3 className="text-center font-medium md:text-xl">
                   {t.is_hover}
                 </h3>
               </>
             ) : (
               <>
-                <div className="justify-center flex text-6xl">
-                  <UploadCloud />
+                <div className="justify-center flex">
+                  <UploadCloud className="size-10 md:size-14" />
                 </div>
-                <h3 className="text-center font-medium text-2xl">
+                <h3 className="text-center font-medium md:text-xl">
                   {t.display}
                 </h3>
               </>
