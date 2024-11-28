@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://mediaconverter.laclass.dev/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1

@@ -77,7 +77,7 @@ export function Navbar() {
                 "transition-colors",
                 isActiveLink(item.href)
                   ? "text-foreground font-medium"
-                  : "text-neutral-600 hover:text-foreground"
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-foreground"
               )}
             >
               {item.name}
