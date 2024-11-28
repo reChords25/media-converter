@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     description:
       "Convert audio, video, and images into high-quality files instantly. Free and unlimited conversions.",
     url: "https://mediaconverter.laclass.dev",
-    siteName: "Media Converter",
+    siteName: "File Flow",
     locale: "en_US",
     type: "website",
     images: [

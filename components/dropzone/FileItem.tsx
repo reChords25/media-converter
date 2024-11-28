@@ -7,7 +7,7 @@ import { extensions, translations } from "@/constants";
 import bytesToSize from "@/utils/bytes-to-size";
 import compressFileName from "@/utils/compress-file-name";
 import fileToIcon from "@/utils/file-to-icon";
-import { CheckIcon, Loader2, LucideMessageCircleWarning, X } from "lucide-react";
+import { CheckIcon, FileWarningIcon, Loader2, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { useLanguage } from "@/context/language-context";
@@ -49,7 +49,7 @@ export default function FileItem({
       {action.is_error ? (
         <Badge variant="destructive" className="flex gap-2">
           <span>{t.error}</span>
-          <LucideMessageCircleWarning />
+          <FileWarningIcon />
         </Badge>
       ) : action.is_converted ? (
         <Badge variant="default" className="flex gap-2 bg-green-500">
