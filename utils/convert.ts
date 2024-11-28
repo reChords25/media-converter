@@ -1,5 +1,5 @@
 // imports
-import { Action } from "@/constants";
+import { Action } from "@/components/dropzone/types";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 

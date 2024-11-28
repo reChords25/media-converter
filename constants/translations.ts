@@ -10,7 +10,7 @@ export const translations = {
     hero: {
       tagline: "Free & Unlimited File Conversions",
       description:
-        "Building exceptional web experiences with TypeScript, React and Next.js. 5+ years of crafting modern, performant applications.",
+        "The ultimate online tool for converting audio, video, and images into high-quality files. Experience the power of conversion with just a few clicks.",
       cta: "Get in Touch",
     },
     dropzone: {
@@ -19,6 +19,7 @@ export const translations = {
       convert: "Convert",
       converting: "Converting",
       converted: "Converted",
+      convert_another: "Convert Another File(s)",
       download: "Download",
       download_all: "Download All",
       delete: "Delete",
@@ -41,6 +42,7 @@ export const translations = {
       convert: "Convertir",
       converting: "Conversion en cours",
       converted: "Converti",
+      convert_another: "Convertir d'autres fichiers",
       download: "Télécharger",
       download_all: "Tout télécharger",
       delete: "Supprimer",
@@ -50,7 +52,7 @@ export const translations = {
     hero: {
       tagline: "Convertissez Vos Fichiers gratuitement et Sans Simite",
       description:
-        "Je crée des expériences web exceptionnelles avec TypeScript, React et Next.js. Plus de 5 ans d'expérience dans le développement d'applications modernes et performantes.",
+        "L'outil en ligne ultime pour convertir des fichiers audio, vidéo et images en fichiers de haute qualité. Profitez de la puissance de la conversion en quelques clics.",
       cta: "On se parle ?",
     },
     footer: {

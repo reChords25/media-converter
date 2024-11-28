@@ -3,13 +3,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { extensions } from "@/constants";
+import { extensions, translations } from "@/constants";
 import bytesToSize from "@/utils/bytes-to-size";
 import compressFileName from "@/utils/compress-file-name";
 import fileToIcon from "@/utils/file-to-icon";
 import { CheckIcon, Loader2, LucideMessageCircleWarning, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { useLanguage } from "@/context/language-context";
 import { FileItemProps } from "./types";
 
 export default function FileItem({
@@ -23,6 +24,9 @@ export default function FileItem({
   setDefaultValues,
   setSelected,
 }: FileItemProps) {
+  const { language } = useLanguage();
+  const t = translations[language].dropzone;
+
   return (
     <div className="w-full py-4 space-y-2 lg:py-0 relative cursor-pointer rounded-xl border h-fit lg:h-20 px-4 lg:px-10 flex flex-wrap lg:flex-nowrap items-center justify-between">
       {!is_loaded && (
@@ -44,17 +48,17 @@ export default function FileItem({
 
       {action.is_error ? (
         <Badge variant="destructive" className="flex gap-2">
-          <span>Error Converting File</span>
+          <span>{t.error}</span>
           <LucideMessageCircleWarning />
         </Badge>
       ) : action.is_converted ? (
         <Badge variant="default" className="flex gap-2 bg-green-500">
-          <span>Done</span>
+          <span>{t.converted}</span>
           <CheckIcon />
         </Badge>
       ) : action.is_converting ? (
         <Badge variant="default" className="flex gap-2">
-          <span>Converting</span>
+          <span>{t.converting}</span>
           <span className="animate-spin">
             <Loader2 />
           </span>
@@ -140,16 +144,23 @@ export default function FileItem({
       )}
 
       {action.is_converted ? (
-        <Button variant="outline" onClick={() => onDownload(action)}>
-          Download
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => onDownload(action)}
+          className="p-2 hover:bg-background"
+        >
+          <span>{t.download}</span>
         </Button>
       ) : (
-        <span
+        <Button
+          size="sm"
+          variant="destructive"
           onClick={() => onDelete(action)}
-          className="cursor-pointer hover:bg-muted rounded-full h-10 w-10 flex items-center justify-center text-2xl text-foreground"
+          className="p-2 hover:bg-background"
         >
           <X />
-        </span>
+        </Button>
       )}
     </div>
   );

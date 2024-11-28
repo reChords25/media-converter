@@ -16,7 +16,7 @@ export default function Home() {
           {t.tagline}
           <br />
         </h1> 
-        <p className="text-md md:text-lg text-neutral-600 text-muted-foreground">
+        <p className="text-md md:text-lg text-neutral-600 text-muted-foreground mb-8">
           {t.description}
         </p>
         <Dropzone />

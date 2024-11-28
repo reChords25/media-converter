@@ -5,6 +5,7 @@ import { Toaster } from 'sonner'
 import { Navbar } from "@/components/navbar";
 import { LanguageProvider } from "@/context/language-context";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -46,9 +47,10 @@ export default function RootLayout({
           <LanguageProvider>
             <Navbar />
             <Toaster expand={true} />
-            <main>
+            <main className="min-h-screen">
               {children}
             </main>
+            <Footer />
           </LanguageProvider>
         </ThemeProvider>
       </body>

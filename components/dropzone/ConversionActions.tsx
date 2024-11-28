@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { DownloadCloud, Loader2 } from "lucide-react";
 import { Action } from "./types";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/constants";
 
 interface ConversionActionsProps {
   is_done: boolean;
@@ -23,6 +25,9 @@ export default function ConversionActions({
   onReset,
   onConvert,
 }: ConversionActionsProps) {
+  const { language } = useLanguage();
+  const t = translations[language].dropzone;
+  
   return (
     <div className="flex w-full justify-end">
       {is_done ? (
@@ -32,7 +37,7 @@ export default function ConversionActions({
             className="rounded-xl font-semibold relative py-4 text-md flex gap-2 items-center w-full"
             onClick={onDownloadAll}
           >
-            {actions.length > 1 ? "Download All" : "Download"}
+            {actions.length > 1 ? t.download_all : t.download}
             <DownloadCloud />
           </Button>
           <Button
@@ -41,7 +46,7 @@ export default function ConversionActions({
             variant="outline"
             className="rounded-xl"
           >
-            Convert Another File(s)
+            {t.convert_another}
           </Button>
         </div>
       ) : (
@@ -56,7 +61,7 @@ export default function ConversionActions({
               <Loader2 className="animate-spin" />
             </span>
           ) : (
-            <span>Convert Now</span>
+            <span>{t.convert}</span>
           )}
         </Button>
       )}

@@ -4,6 +4,8 @@ import { FileSymlink, UploadCloud } from "lucide-react";
 import { useState } from "react";
 import ReactDropzone from "react-dropzone";
 import { toast } from "sonner";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/constants";
 
 interface DropzoneInputProps {
   onUpload: (files: File[]) => void;
@@ -13,6 +15,9 @@ interface DropzoneInputProps {
 }
 
 export default function DropzoneInput({ onUpload, accepted_files }: DropzoneInputProps) {
+  const { language } = useLanguage();
+  const t = translations[language].dropzone;
+  
   const handleHover = () => setIsHover(true);
   const handleExitHover = () => setIsHover(false);
   const [is_hover, setIsHover] = useState<boolean>(false);
@@ -28,11 +33,11 @@ export default function DropzoneInput({ onUpload, accepted_files }: DropzoneInpu
       accept={accepted_files}
       onDropRejected={() => {
         handleExitHover();
-        toast.error("Allowed Files: Audio, Video and Images.");
+        toast.error(t.error);
       }}
       onError={() => {
         handleExitHover();
-        toast.error("Allowed Files: Audio, Video and Images.");
+        toast.error(t.error);
       }}
     >
       {({ getRootProps, getInputProps }) => (
@@ -48,7 +53,7 @@ export default function DropzoneInput({ onUpload, accepted_files }: DropzoneInpu
                   <FileSymlink />
                 </div>
                 <h3 className="text-center font-medium text-2xl">
-                  Yes, right there
+                  {t.is_hover}
                 </h3>
               </>
             ) : (
@@ -57,7 +62,7 @@ export default function DropzoneInput({ onUpload, accepted_files }: DropzoneInpu
                   <UploadCloud />
                 </div>
                 <h3 className="text-center font-medium text-2xl">
-                  Click, or drop your files here
+                  {t.display}
                 </h3>
               </>
             )}
