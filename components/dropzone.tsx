@@ -40,8 +40,8 @@ export default function Dropzone() {
   const [is_converting, setIsConverting] = useState<boolean>(false);
   const [is_done, setIsDone] = useState<boolean>(false);
   const ffmpegRef = useRef<FFmpeg | null>(null);
-  const [defaultValues, setDefaultValues] = useState<string>("video");
-  const [selected, setSelected] = useState<string>("...");
+  const [defaultValues, setDefaultValues] = useState<{ [key: string]: string }>({});
+  const [selected, setSelected] = useState<{ [key: string]: string }>({});
   const accepted_files = {
     "image/*": [
       ".jpg",
@@ -78,17 +78,28 @@ export default function Dropzone() {
   };
 
   const download = (action: Action) => {
+    if (!action.url || !action.output) return;
+    
     const a = document.createElement("a");
     a.style.display = "none";
-    a.href = action.url ?? "";
-    a.download =
-      typeof action.output === "string" ? action.output : "default_filename";
-
+    a.href = action.url;
+    
+    // Use the original output filename if it's a string, or get it from the File object
+    let filename = '';
+    if (typeof action.output === 'string') {
+      filename = action.output;
+    } else if (action.output instanceof File) {
+      filename = action.file_name.replace(/\.[^/.]+$/, '') + '.' + action.to;
+    } else {
+      filename = 'converted_file.' + action.to;
+    }
+    
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
-
+    
     // Clean up after download
-    URL.revokeObjectURL(action.url ?? "");
+    URL.revokeObjectURL(action.url);
     document.body.removeChild(a);
   };
   const convert = async (): Promise<void> => {
@@ -249,14 +260,14 @@ export default function Dropzone() {
                 <Select
                   onValueChange={(value) => {
                     if (extensions.audio.includes(value)) {
-                      setDefaultValues("audio");
+                      setDefaultValues(prev => ({ ...prev, [action.file_name]: "audio" }));
                     } else if (extensions.video.includes(value)) {
-                      setDefaultValues("video");
+                      setDefaultValues(prev => ({ ...prev, [action.file_name]: "video" }));
                     }
-                    setSelected(value);
+                    setSelected(prev => ({ ...prev, [action.file_name]: value }));
                     updateAction(action.file_name, value);
                   }}
-                  value={selected}
+                  value={selected[action.file_name] || "..."}
                 >
                   <SelectTrigger className="w-32 outline-none focus:outline-none focus:ring-0 text-center text-muted-foreground bg-background text-md font-medium">
                     <SelectValue placeholder="..." />
@@ -274,7 +285,7 @@ export default function Dropzone() {
                       </div>
                     )}
                     {action.file_type.includes("video") && (
-                      <Tabs defaultValue={defaultValues} className="w-full">
+                      <Tabs defaultValue={defaultValues[action.file_name] || "video"} className="w-full">
                         <TabsList className="w-full">
                           <TabsTrigger value="video" className="w-full">
                             Video
