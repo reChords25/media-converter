@@ -2,6 +2,8 @@
 
 import { translations } from "@/constants";
 import { useLanguage } from "@/context/language-context";
+import { Github } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function Footer() {
   const { language } = useLanguage();
@@ -14,6 +16,20 @@ export default function Footer() {
           className="text-center text-sm leading-5 text-muted-foreground"
           dangerouslySetInnerHTML={{ __html: t.footer.copyright }}
         />
+        <a
+          href="https://github.com/bellandry/media-converter"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:block"
+        >
+          <Button
+            className="bg-neutral-950 dark:bg-white rounded-full"
+            size={"lg"}
+          >
+            <Github className="h-5 w-5" />
+            Github Repo
+          </Button>
+        </a>
       </div>
     </footer>
   );

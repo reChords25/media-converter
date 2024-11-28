@@ -69,7 +69,7 @@ export function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
-        {(navItems as { name: string; href: string }[]).map((item) => (
+          {(navItems as { name: string; href: string }[]).map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -133,14 +133,17 @@ export function Navbar() {
                   </Link>
                 ))}
                 <a
-                href="https://github.com/bellandry/flow-format"
-                target="_blank"
-                rel="noopener noreferrer"
+                  href="https://github.com/bellandry/media-converter"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                <Button className="bg-neutral-950 dark:bg-white rounded-full" size={"lg"}>
+                  <Button
+                    className="bg-neutral-950 dark:bg-white rounded-full"
+                    size={"lg"}
+                  >
                     <Github className="h-5 w-5" />
                     Github Repo
-                </Button>
+                  </Button>
                 </a>
               </div>
               <div className="flex flex-wrap justify-center gap-4">
