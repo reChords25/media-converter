@@ -98,7 +98,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Author
 
-[Landry Bella](https://laclass.dev)
+- Built with ❤️ by [Landry Bella](https://laclass.dev)
 
 ## Acknowledgments
 
