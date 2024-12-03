@@ -96,9 +96,9 @@ export const translations = {
       is_hover: "Déposer pour uploader",
     },
     hero: {
-      tagline: "Convertissez Vos Fichiers gratuitement et Sans Simite",
+      tagline: "Convertissez Vos Fichiers gratuitement et Sans Limite",
       description:
-        "L'outil en ligne ultime pour convertir des fichiers audio, vidéo et images en fichiers de haute qualité. Profitez de la puissance de la conversion en quelques clics.",
+        "L'outil en ligne ultime pour convertir des fichiers audios, vidéos et images en fichiers de haute qualité. Profitez de la puissance de la conversion en quelques clics.",
       cta: "On se parle ?",
     },
     footer: {
