@@ -1,4 +1,4 @@
-export type Language = "en" | "fr";
+export type Language = "en" | "fr" | "de";
 
 export const translations = {
   en: {
@@ -147,6 +147,81 @@ export const translations = {
         {
           section: "Contact",
           text: "Si vous avez des questions sur notre politique de confidentialité, n'hésitez pas à nous contacter.",
+        },
+      ],
+    },
+  },
+  de: {
+    navItems: [
+      { name: "Start", href: "/" },
+      { name: "Über uns", href: "/about" },
+      { name: "Datenschutz", href: "/privacy" },
+    ],
+    hero: {
+      tagline: "Kostenlose und nbegrenzte Dateikonvertierung",
+      description:
+        "Das ultimative Tool zum Konvertieren von Mediendateien in höchster Qualität. Probier' es gleich aus und erlebe die Macht des Konvertierens im Handumdrehen.",
+      cta: "Kontakt",
+    },
+    dropzone: {
+      error: "Erlaubte Dateien: Audio, Video und Bilder.",
+      uploading: "Dateien werden hochgeladen",
+      convert: "Konvertieren",
+      converting: "Konvertiere",
+      converted: "Konvertiert",
+      convert_another: "Weitere Datei(en) konvertieren",
+      download: "Herunterladen",
+      download_all: "Alle herunterladen",
+      delete: "Löschen",
+      display: "Klicke hier oder ziehe deine Dateien per drag'n'drop hierher",
+      is_hover: "Zum Hochladen loslassen",
+    },
+    footer: {
+      copyright: `© ${new Date().getFullYear()} mit ❤️ erstellt von <a href="https://laclass.dev" target="_blank" rel="noopener noreferrer">Landry Bella</a>.`,
+    },
+    about: {
+      title: "Über Media Converter",
+      description: "Der Online-Dateikonverter deines Vertrauens",
+      content: [
+        "Herzlich Willkommen bei Media Converter, deiner Lösung für jede Dateikonvertierung. Wir haben diese Seite mit dem Gedanken erstellt, eine einfache und effiziente Plattform zum Konvertieren für jeden anzubieten - auch ohne technische Vorkenntnisse.",
+        "Media Converter unterstützt viele Dateiformate, unter anderem Audio-, Video- und Bilddateien. Egal ob du Content Creator, Medienprofi oder Hobbyist bist, hier bist du auf jeden Fall richtig.",
+        "Was macht uns besonders? Unser Service ist vollständig kostenlos, unbegrenzt nutzbar und so sicher wie möglich. Deine Dateien werden ausschließlich auf deinem Gerät verarbeitet - mehr Privatsphäre geht nicht.",
+      ],
+      features: [
+        "Kostenloses und unbegrenztes Konvertieren",
+        "Browserbasierte Verarbeitung für maximale Sicherheit",
+        "Unterstützung der meisten Dateiformate",
+        "Ohne Registrierung oder Account",
+        "Schnelles und Effizientes Konvertieren",
+      ],
+    },
+    privacy: {
+      title: "Datenschutz",
+      lastUpdated: "Zuletzt geändert: 20. November 2024",
+      content: [
+        {
+          section: "Einleitung",
+          text: "At Media Converter, we take your privacy seriously. This Privacy Policy explains how we handle your data when you use our service.",
+        },
+        {
+          section: "Datennutzung",
+          text: "Wir speichern keine deiner Medieninhalte. Die gesamte Verarbeitung passiert alleine auf deinem Endgerät, unsere Server erreichen keine deiner Daten.",
+        },
+        {
+          section: "Browserbasierte Verarbeitung",
+          text: "Deine Dateien werden direkt im Browser verarbeitet. Sie verlassen dein Gerät während des gesamten Prozesses nicht, nicht einmal den Browser selbst.",
+        },
+        {
+          section: "Analytics",
+          text: "Wir sammeln bestimmte, nicht-personenbezogene Daten, um unseren Dienst verbessern zu können. Dadurch kann unmöglich eine Person identifiziert werden.",
+        },
+        {
+          section: "Cookies",
+          text: "Wir nutzen Cookies, damit unser Dienst mit allen Funktionen verfügbar ist. Sie werden nicht zu Marketingzwecken oder zum Tracking verwendet.",
+        },
+        {
+          section: "Kontakt",
+          text: "Wenn du noch Fragen bezüglich des Datenschutzes hast, kontaktiere uns gerne.",
         },
       ],
     },

@@ -17,7 +17,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("fr"); // Default to French
+  const [language, setLanguage] = useState<Language>("en"); // Default to French
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -25,8 +25,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       const browserLang = window.navigator.language.toLowerCase();
       
       // Check if language starts with 'fr' (includes fr-FR, fr-CA, etc.)
-      const isFrench = browserLang.startsWith('fr');
-      setLanguage(isFrench ? 'fr' : 'en');
+      const langPart = browserLang.substring(0, browserLang.indexOf('-'));
+      const availableLanguages = ['fr', 'en', 'de']
+      if (availableLanguages.includes(langPart)) {
+        setLanguage(langPart as Language)
+      } else {
+        setLanguage('en')
+      }
     }
   }, []); // Run once on mount
 

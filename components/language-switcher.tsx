@@ -22,6 +22,13 @@ export function LanguageSwitcher() {
       >
         FR
       </Button>
+      <Button
+        variant={language === 'de' ? 'default' : 'outline'}
+        size="sm"
+        onClick={() => setLanguage('de')}
+      >
+        DE
+      </Button>
     </div>
   );
 }
